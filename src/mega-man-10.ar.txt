@@ -1,0 +1,27 @@
+Time Attack weapons
+02535A7E 000007FF  # weapons = MB, TB, WS, CB, CS, TW, WC, SB, RC, RJ
+085102EF 00000002  # if music == Pump Man:
+02535A7E 00000201  #   weapons = MB, RC
+085102EF 00000008  # if music == Solar Man:
+02535A7E 00000205  #   weapons = MB, WS, RC
+085102EF 00000003  # if music == Chill Man:
+02535A7E 00000305  #   weapons = MB, WS, SB, RC
+085102EF 00000007  # if music == Nitro Man:
+02535A7E 00000315  #   weapons = MB, WS, CS, SB, RC
+085102EF 00000004  # if music == Commando Man:
+02535A7E 00000795  #   weapons = MB, WS, CS, WC, SB, RC, RJ
+085102EF 00000001  # if music == Blade Man:
+02535A7E 0000079D  #   weapons = MB, WS, CB, CS, WC, SB, RC, RJ
+085102EF 00000006  # if music == Strike Man:
+02535A7E 0000079F  #   weapons = MB, TB, WS, CB, CS, WC, SB, RC, RJ
+085102EF 00000005  # if music == Sheep Man:
+02535A7E 000007DF  #   weapons = MB, TB, WS, CB, CS, TW, WC, SB, RC, RJ
+
+Lock RNG
+0467CB54 00000000  # rng = 0
+
+Remove Special Stage times
+005A0998 000000FD  # Set Climber challenge incomplete and next 7 challenges complete
+045A0AE0 00008CA1  # Unset Special Stage 1 time
+045A0AE4 00008CA1  # Unset Special Stage 2 time
+045A0AE8 00008CA1  # Unset Special Stage 3 time
