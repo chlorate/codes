@@ -19,8 +19,8 @@ Time Attack weapons
 E2000001 00000000  # endif
 
 Time Attack Wily 4 tanks
-205C5728 00000001  # if (32-bit) Time Attack time == 1:
-285102EE 0000000C  #   if (16-bit) music == Wily 4:
+205C5728 00000001  # if Time Attack time == 1:
+285102EE 0000000C  #   if music == Wily 4:
 0051066A 00000001  #     M-tank count = 1
 0051066B 00000001  #     W-tank count = 1
 E2000002 00000000  # endif x2

@@ -1,25 +1,25 @@
 Time Attack weapons
 02535A7E 000007FF  # weapons = MB, TB, WS, CB, CS, TW, WC, SB, RC, RJ
-085102EF 00000002  # if music == Pump Man:
+085102EF 00000002  # if music == Pump Man, then run next line:
 02535A7E 00000201  #   weapons = MB, RC
-085102EF 00000008  # if music == Solar Man:
+085102EF 00000008  # if music == Solar Man, then run next line:
 02535A7E 00000205  #   weapons = MB, WS, RC
-085102EF 00000003  # if music == Chill Man:
+085102EF 00000003  # if music == Chill Man, then run next line:
 02535A7E 00000305  #   weapons = MB, WS, SB, RC
-085102EF 00000007  # if music == Nitro Man:
+085102EF 00000007  # if music == Nitro Man, then run next line:
 02535A7E 00000315  #   weapons = MB, WS, CS, SB, RC
-085102EF 00000004  # if music == Commando Man:
+085102EF 00000004  # if music == Commando Man, then run next line:
 02535A7E 00000795  #   weapons = MB, WS, CS, WC, SB, RC, RJ
-085102EF 00000001  # if music == Blade Man:
+085102EF 00000001  # if music == Blade Man, then run next line:
 02535A7E 0000079D  #   weapons = MB, WS, CB, CS, WC, SB, RC, RJ
-085102EF 00000006  # if music == Strike Man:
+085102EF 00000006  # if music == Strike Man, then run next line:
 02535A7E 0000079F  #   weapons = MB, TB, WS, CB, CS, WC, SB, RC, RJ
-085102EF 00000005  # if music == Sheep Man:
+085102EF 00000005  # if music == Sheep Man, then run next line:
 02535A7E 000007DF  #   weapons = MB, TB, WS, CB, CS, TW, WC, SB, RC, RJ
 
 Time Attack Wily 4 tanks
-8C5C5728 00000001  # if (32-bit) Time Attack time == 1:
-485102EF 0000000C  #   if (8-bit) music == Wily 4, then run next 2 lines:
+8C5C5728 00000001  # if Time Attack time == 1:
+485102EF 0000000C  #   if music == Wily 4, then run next 2 lines:
 0051066A 00000001  #     M-tank count = 1
 0051066B 00000001  #     W-tank count = 1
 00000000 40000000  # endif
