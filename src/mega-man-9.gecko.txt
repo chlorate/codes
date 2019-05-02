@@ -1,0 +1,14 @@
+Instant game over (L + R + Start + Select)
+28319E0A C9FF3600  # if L + R + Start + Select is pressed:
+043140C0 000E0000  #   Set magic state byte to trigger game over menu
+E2000001 00000000  # endif
+
+Retry stage (Select + X)
+28319E0A EFF71008  # if Select + X is pressed:
+043140C0 00070000  #   Set magic state byte to trigger respawn at stage start
+E2000001 00000000  # endif
+
+Retry checkpoint (Select + A)
+28319E0A EFEF1010  # if Select + A is pressed:
+043140C0 00080000  #   Set magic state byte to trigger respawn at last checkpoint
+E2000001 00000000  # endif

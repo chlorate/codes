@@ -3,6 +3,7 @@ FORMAT_TXTCODE = sed 's/\s\+\#.\+$$//g'
 
 TARGETS = \
 	dist/dolphin/WRXE08.ini \
+	dist/txtcodes/WR9E.txt \
 	dist/txtcodes/WRXE.txt
 
 .PHONY: build
@@ -18,6 +19,12 @@ dist/dolphin/WRXE08.ini: src/mega-man-10.ar.txt src/mega-man-10.gecko.txt
 	echo >> $@
 	echo [Gecko] >> $@
 	$(FORMAT_INI) $(word 2, $^) >> $@
+
+dist/txtcodes/WR9E.txt: src/mega-man-9.gecko.txt
+	echo $(notdir $(basename $@)) > $@
+	echo Mega Man 9 >> $@
+	echo >> $@
+	$(FORMAT_TXTCODE) $< >> $@
 
 dist/txtcodes/WRXE.txt: src/mega-man-10.gecko.txt
 	echo $(notdir $(basename $@)) > $@
