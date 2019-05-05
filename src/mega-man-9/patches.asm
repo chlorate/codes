@@ -23,25 +23,25 @@
   lbz r4, 0x0002 (r31)  # |   Unlock certain weapons
   cmpwi r4, 0x0001      # |
   beq end               # /
-  li r0, hornet         # \ if selected stage == Hornet Man:
+  li r0, hornet         # \ else if selected stage == Hornet Man:
   cmpwi r4, 0x0002      # |   Unlock certain weapons
   beq end               # /
-  li r0, galaxy         # \ if selected stage == Galaxy Man:
+  li r0, galaxy         # \ else if selected stage == Galaxy Man:
   cmpwi r4, 0x0003      # |   Unlock certain weapons
   beq end               # /
-  li r0, tornado        # \ if selected stage == Tornado Man:
+  li r0, tornado        # \ else if selected stage == Tornado Man:
   cmpwi r4, 0x0004      # |   Unlock certain weapons
   beq end               # /
-  li r0, jewel          # \ if selected stage == Jewel Man:
+  li r0, jewel          # \ else if selected stage == Jewel Man:
   cmpwi r4, 0x0005      # |   Unlock certain weapons
   beq end               # /
-  li r0, splash         # \ if selected stage == Splash Woman:
+  li r0, splash         # \ else if selected stage == Splash Woman:
   cmpwi r4, 0x0006      # |   Unlock certain weapons
   beq end               # /
-  li r0, plug           # \ if selected stage == Plug Man:
+  li r0, plug           # \ else if selected stage == Plug Man:
   cmpwi r4, 0x0007      # |   Unlock certain weapons
   beq end               # /
-  li r0, concrete       # \ if selected stage == Concrete Man:
+  li r0, concrete       # \ else if selected stage == Concrete Man:
   cmpwi r4, 0x0008      # |   Unlock certain weapons
   beq end               # /
   li r0, 0x07ff         # > else: Unlock all weapons
