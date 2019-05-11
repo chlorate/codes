@@ -11,6 +11,13 @@ Exit TA stage (L + R + Start + Select)
 043140C0 000E0000  #     Set game mode to trigger game over
 E2000002 00000000  # endif x2
 
+Exit to Stage Select (Select + Y)
+28319E0A 00001020  # if Select + Y is pressed:
+2E31633C 00000300  #   if not in Time/Endless Attack:
+2A3140C0 00000202  #     if not on Stage Select:
+043140C0 00010000  #       Set game mode to trigger Stage Select
+E2000003 00000000  # endif x3
+
 Retry stage (Select + X)
 C0000000 00000011  # Execute assembly (see retry-stage.asm)
 3D208100 89490000
