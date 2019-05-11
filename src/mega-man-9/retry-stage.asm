@@ -1,7 +1,7 @@
 .set state,        0x81000000
-.set pressedBit,   0b00000001
-.set activatedBit, 0b00000010
-.set buttonCombo,  0b0001000000010000  # Select + A
+.set pressedBit,   0b00000100
+.set activatedBit, 0b00001000
+.set buttonCombo,  0b0001000000001000  # Select + X
 
 # WR9E addresses:
 .set input, 0x80319e0a
@@ -44,9 +44,7 @@ pressed:                                   # \ else if pressed bit is cleared:
 # stage select or boss intros). Most of the time it works, but there are some
 # edge cases that cause issues:
 #
-# - Respawning during normal gameplay crashes in the Wily 1 beam rooms.
-# - Respawning during boss intros causes a crash after the stage is beaten and
-#   can load the wrong set of enemy data.
+# - Respawning during boss intros causes a crash after the stage.
 # - Respawning crashes if no stage has been played yet.
 #
 # To avoid these issues, the code only respawns when the challenge or pause
@@ -71,7 +69,7 @@ openPauseMenu:                             # \ Open pause menu:
   li r12, 0x000b                           # |   Set mode to fade to pause menu
   b writeMode                              # /   (+ write mode)
 respawn:                                   # \ Respawn:
-  li r12, 0x0008                           # |   Set mode to respawn at last checkpoint
+  li r12, 0x0007                           # |   Set mode to respawn at stage beginning
                                            # /   (+ fall through to deactivate)
 deactivate:                                # \ Deactivate:
   andi. r10, r10, ~activatedBit@l          # |   Clear activated bit
