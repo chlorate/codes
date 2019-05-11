@@ -1,7 +1,15 @@
-Instant game over (L + R + Start + Select)
-28319E4A C9FF3600
-04314100 000E0000
-E2000001 00000000
+Soft reset (L + R + Start + Select)
+28319E4A 00003600  # if L + R + Start + Select is pressed:
+2E31637C 00000300  #   if not in Time/Endless Attack:
+044EE700 803141C0  #     Set possibly unset pointer (avoid crash if no stage played yet)
+04314100 00160000  #     Set game mode to trigger title screen
+E2000002 00000000  # endif x2
+
+Exit TA stage (L + R + Start + Select)
+28319E4A 00003600  # if L + R + Start + Select is pressed:
+2C31637C 000002FF  #   if in Time/Endless Attack:
+04314100 000E0000  #     Set game mode to trigger game over
+E2000002 00000000  # endif x2
 
 Retry stage (Select + X)
 28319E4A EFF71008

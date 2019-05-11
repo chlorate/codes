@@ -1,7 +1,15 @@
-Instant game over (L + R + Start + Select)
-28319E0A C9FF3600  # if L + R + Start + Select is pressed:
-043140C0 000E0000  #   Set magic state byte to trigger game over menu
-E2000001 00000000  # endif
+Soft reset (L + R + Start + Select)
+28319E0A 00003600  # if L + R + Start + Select is pressed:
+2E31633C 00000300  #   if not in Time/Endless Attack:
+044EE6C0 80314180  #     Set possibly unset pointer (avoid crash if no stage played yet)
+043140C0 00160000  #     Set game mode to trigger title screen
+E2000002 00000000  # endif x2
+
+Exit TA stage (L + R + Start + Select)
+28319E0A 00003600  # if L + R + Start + Select is pressed:
+2C31633C 000002FF  #   if in Time/Endless Attack:
+043140C0 000E0000  #     Set game mode to trigger game over
+E2000002 00000000  # endif x2
 
 Retry stage (Select + X)
 28319E0A EFF71008  # if Select + X is pressed:
