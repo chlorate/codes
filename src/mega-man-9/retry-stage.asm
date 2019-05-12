@@ -4,12 +4,14 @@
 .set buttonCombo,  0b0001000000001000  # Select + X
 
 # WR9E addresses:
-.set input, 0x80319e0a
-.set mode,  0x803140c0
+.set input,               0x80319e0a
+.set mode,                0x803140c0
+.set initialRefightKills, 0x80316305
 
 # WR9P addresses:
-.set input, 0x80319e4a
-.set mode,  0x80314100
+.set input,               0x80319e4a
+.set mode,                0x80314100
+.set initialRefightKills, 0x80316345
 
 # Registers:
 # - r9: retryState address (high halfword)
@@ -69,7 +71,9 @@ openPauseMenu:                             # \ Open pause menu:
   li r12, 0x000b                           # |   Set mode to fade to pause menu
   b writeMode                              # /   (+ write mode)
 respawn:                                   # \ Respawn:
-  li r12, 0x0007                           # |   Set mode to respawn at stage beginning
+  li r3, 0x0000                            # | \ Clear boss refight kill state
+  stb r3, initialRefightKills@l (r11)      # | / (optimization: r11 has same high halfword)
+  li r12, 0x0007                           # | > Set mode to respawn at beginning of stage
                                            # /   (+ fall through to deactivate)
 deactivate:                                # \ Deactivate:
   andi. r10, r10, ~activatedBit@l          # |   Clear activated bit
