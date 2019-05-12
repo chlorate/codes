@@ -62,8 +62,8 @@ C0000000 00000013  # Execute assembly (see retry-checkpoint.asm)
 60000000 00000000
 
 TA weapons (GM 3rd, SW 7th)
-C20B72F4 0000000E  # Patch code to unlock certain weapons based on stage instead
-38000301 889F0002  # of all weapons when Time Attack stage is selected
+C20B72F4 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.asm)
+38000301 889F0002
 2C040001 4182005C
 3800030B 2C040002
 41820050 38000303
@@ -79,7 +79,7 @@ C20B72F4 0000000E  # Patch code to unlock certain weapons based on stage instead
 60000000 00000000
 
 TA weapons (GM 4th, SW last)
-C20B72F4 0000000E
+C20B72F4 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.asm)
 38000301 889F0002
 2C040001 4182005C
 38000303 2C040002
