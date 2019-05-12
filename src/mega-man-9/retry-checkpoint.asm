@@ -4,16 +4,18 @@
 .set buttonCombo,  0b0001000000010000  # Select + A
 
 # WR9E addresses:
-.set input, 0x80319e0a
-.set mode,  0x803140c0
+.set input,               0x80319e0a
+.set mode,                0x803140c0
 .set currentRefightKills, 0x803051d9
 .set initialRefightKills, 0x80316305
+.set objectSpawns,        0x8043cf7c
 
 # WR9P addresses:
-.set input, 0x80319e4a
-.set mode,  0x80314100
+.set input,               0x80319e4a
+.set mode,                0x80314100
 .set currentRefightKills, 0x80305219
 .set initialRefightKills, 0x80316345
+.set objectSpawns,        0x8043cfbc
 
 # Registers:
 # - r9: retryState address (high halfword)
@@ -75,6 +77,15 @@ openPauseMenu:                             # \ Open pause menu:
   li r12, 0x000b                           # |   Set mode to fade to pause menu
   b writeMode                              # /   (+ write mode)
 respawn:                                   # \ Respawn:
+  lis r0, 0x0000                           # | \ Set all stage object spawn bits
+  not r0, r0                               # | | (in particular, to respawn energy pickups)
+  lis r3, objectSpawns@h                   # | |
+  ori r3, r3, objectSpawns@l               # | |
+  li r5, 0x007c                            # | |
+loopRespawnObjects:                        # | |
+  stwx r0, r3, r5                          # | |
+  subic. r5, r5, 0x0004                    # | |
+  bge loopRespawnObjects                   # | /
   lis r3, currentRefightKills@h            # | \ Save current boss refight kill state
   lbz r3, currentRefightKills@l (r3)       # | |
   stb r3, initialRefightKills@l (r11)      # | / (optimization: r11 uses same high halfword)
