@@ -82,7 +82,7 @@ C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
 38000000 00000000
 
 TA weapons (GM 3rd, SW 7th)
-C20B72F4 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.asm)
+C20B72F4 0000000E  # Patch (see ta-weapons.asm)
 38000301 889F0002
 2C040001 4182005C
 3800030B 2C040002
@@ -99,7 +99,7 @@ C20B72F4 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.
 60000000 00000000
 
 TA weapons (GM 4th, SW last)
-C20B72F4 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.asm)
+C20B72F4 0000000E  # Patch (see ta-weapons.asm)
 38000301 889F0002
 2C040001 4182005C
 38000303 2C040002
