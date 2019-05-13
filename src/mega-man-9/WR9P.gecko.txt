@@ -73,6 +73,14 @@ C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
 7C6903A6 4E800421
 38000000 00000000
 
+Proto Man TA
+C20898B0 00000001  # Patch (see proto-man-ta.asm)
+38800002 00000000
+C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
+3C60800D 60634398
+7C6903A6 4E800421
+38000000 00000000
+
 TA weapons (GM 3rd, SW 7th)
 C20B7360 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.asm)
 38000301 889F0002
