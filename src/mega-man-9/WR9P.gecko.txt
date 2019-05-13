@@ -38,6 +38,10 @@ C0000000 00000012  # Execute assembly (see retry-stage.asm)
 39800007 714AFFF7
 B18B4100 99490000
 4E800020 00000000
+C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
+3C60800D 60634398
+7C6903A6 4E800421
+38000000 00000000
 
 Retry checkpoint (Select + A)
 C0000000 00000017  # Execute assembly (see retry-checkpoint.asm)
@@ -64,6 +68,10 @@ C0000000 00000017  # Execute assembly (see retry-checkpoint.asm)
 714AFFFD B18B4100
 99490000 4E800020
 60000000 00000000
+C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
+3C60800D 60634398
+7C6903A6 4E800421
+38000000 00000000
 
 TA weapons (GM 3rd, SW 7th)
 C20B7360 0000000E  # Patch Time Attack initial unlocked weapons (see ta-weapons.asm)
