@@ -89,7 +89,7 @@ loopRespawnObjects:                        # | |
   lis r3, currentRefightKills@h            # | \ Save current boss refight kill state
   lbz r3, currentRefightKills@l (r3)       # | |
   stb r3, initialRefightKills@l (r11)      # | / (optimization: r11 uses same high halfword)
-  li r12, 0x0008                           # | > Set mode to respawn at beginning of stage
+  li r12, 0x0008                           # | > Set mode to respawn at checkpoint
                                            # /   (+ fall through to deactivate)
 deactivate:                                # \ Deactivate:
   andi. r10, r10, ~activatedBit@l          # |   Clear activated bit
