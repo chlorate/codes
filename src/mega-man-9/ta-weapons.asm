@@ -15,6 +15,16 @@
 .set splash,   0x079f  # Buster, MB, HC, BHB, JS, PB, CS, RC, RJ
 .set tornado,  0x07df  # Buster, MB, HC, BHB, JS, LT, PB, CS, RC, RJ
 
+# Galaxy 4th, Splash 7th
+.set concrete, 0x0201  # Buster, RC
+.set magma,    0x0301  # Buster, CS, RC
+.set hornet,   0x0303  # Buster, MB, CS, RC
+.set galaxy,   0x0307  # Buster, MB, HC, CS, RC
+.set jewel,    0x030f  # Buster, MB, HC, BHB, CS, RC
+.set plug,     0x071f  # Buster, MB, HC, BHB, JS, CS, RC, RJ
+.set splash,   0x079f  # Buster, MB, HC, BHB, JS, PB, CS, RC, RJ
+.set tornado,  0x07df  # Buster, MB, HC, BHB, JS, LT, PB, CS, RC, RJ
+
 # Galaxy 4th, Splash last
 .set concrete, 0x0201  # Buster, RC
 .set magma,    0x0301  # Buster, CS, RC
