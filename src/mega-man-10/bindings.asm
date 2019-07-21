@@ -34,33 +34,33 @@
 .set zr, 0x0004
 
 # Unbind Weapon Swap L
-  lis r3, bindings@h              # \ Read Weapon Swap L bindings
-  lhz r0, bindings@l+lIndex (r3)  # /
-  lis r5, mode@h                  # \ if game mode is normal gameplay:
-  lhz r5, mode@l (r5)             # |   Unbind Weapon Swap L from L
-  cmpwi r5, 0x000a                # |
+  lis r5, bindings@h              # \ Read Weapon Swap L bindings
+  lhz r0, bindings@l+lIndex (r5)  # /
+  lis r7, mode@h                  # \ if game mode is normal gameplay:
+  lhz r7, mode@l (r7)             # |   Unbind Weapon Swap L from L
+  cmpwi r7, 0x000a                # |
   bne bind                        # |
   andi. r0, r0, ~l@l              # |
   b end                           # /
 bind:                             # \ else:
   ori r0, r0, l                   # /   Bind Weapon Swap L to L
 end:
-  sth r0, bindings@l+lIndex (r3)  # > Write Weapon Swap L bindings
+  sth r0, bindings@l+lIndex (r5)  # > Write Weapon Swap L bindings
   blr
 
 # Unbind Weapon Swap R
-  lis r3, bindings@h              # \ Read Weapon Swap R bindings
-  lhz r0, bindings@l+rIndex (r3)  # /
-  lis r5, mode@h                  # \ if game mode is normal gameplay:
-  lhz r5, mode@l (r5)             # |   Unbind Weapon Swap R from R
-  cmpwi r5, 0x000a                # |
+  lis r5, bindings@h              # \ Read Weapon Swap R bindings
+  lhz r0, bindings@l+rIndex (r5)  # /
+  lis r7, mode@h                  # \ if game mode is normal gameplay:
+  lhz r7, mode@l (r7)             # |   Unbind Weapon Swap R from R
+  cmpwi r7, 0x000a                # |
   bne bind                        # |
   andi. r0, r0, ~r@l              # |
   b end                           # /
 bind:                             # \ else:
   ori r0, r0, r                   # /   Bind Weapon Swap R to R
 end:
-  sth r0, bindings@l+rIndex (r3)  # > Write Weapon Swap R bindings
+  sth r0, bindings@l+rIndex (r5)  # > Write Weapon Swap R bindings
   blr
 
 # Bind Weapon Swap L to X
