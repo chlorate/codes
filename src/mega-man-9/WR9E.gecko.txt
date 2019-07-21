@@ -1,21 +1,105 @@
-Instant game over (L + R + Start + Select)
-28319E0A C9FF3600  # if L + R + Start + Select is pressed:
-043140C0 000E0000  #   Set magic state byte to trigger game over menu
-E2000001 00000000  # endif
+Soft reset (L + R + Start + Select)
+28319E0A 00003600  # if L + R + Start + Select is pressed:
+2E31633C 00000300  #   if not in Time/Endless Attack:
+044EE6C0 80314180  #     Set possibly unset pointer (avoid crash if no stage played yet)
+043140C0 00160000  #     Set game mode to trigger title screen
+E2000002 00000000  # endif x2
+
+Exit TA stage (L + R + Start + Select)
+28319E0A 00003600  # if L + R + Start + Select is pressed:
+2C31633C 000002FF  #   if in Time/Endless Attack:
+043140C0 000E0000  #     Set game mode to trigger game over
+E2000002 00000000  # endif x2
+
+Exit to Stage Select (Select + Y)
+28319E0A 00001020  # if Select + Y is pressed:
+2E31633C 00000300  #   if not in Time/Endless Attack:
+2A3140C0 00000202  #     if not on Stage Select:
+043140C0 00010000  #       Set game mode to trigger Stage Select
+E2000003 00000000  # endif x3
 
 Retry stage (Select + X)
-28319E0A EFF71008  # if Select + X is pressed:
-043140C0 00070000  #   Set magic state byte to trigger respawn at stage start
-E2000001 00000000  # endif
+C0000000 00000012  # Execute assembly (see retry-stage.asm)
+3D208100 89490000
+3D608031 A18B40C0
+3C608032 A0639E0A
+28031008 4182000C
+714AFFFB 48000010
+71400004 41810008
+614A000C 71400008
+4182004C 280C0009
+4182003C 280C000A
+41820020 280C0100
+41820020 280C0101
+41820018 280C0A01
+41820010 48000020
+3980000B 48000014
+38600000 986B6305
+39800007 714AFFF7
+B18B40C0 99490000
+4E800020 00000000
+C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
+3C60800D 6063432C
+7C6903A6 4E800421
+38000000 00000000
 
 Retry checkpoint (Select + A)
-28319E0A EFEF1010  # if Select + A is pressed:
-043140C0 00080000  #   Set magic state byte to trigger respawn at last checkpoint
-E2000001 00000000  # endif
+C0000000 00000017  # Execute assembly (see retry-checkpoint.asm)
+3D208100 89490000
+3D608031 A18B40C0
+3C608032 A0639E0A
+28031010 4182000C
+714AFFFE 48000010
+71400001 41810008
+614A0003 71400002
+41820070 280C0009
+41820060 280C000A
+41820020 280C0100
+41820020 280C0101
+41820018 280C0A01
+41820010 48000044
+3980000B 48000038
+3C000000 7C0000F8
+3C608043 6063CF7C
+38A0007C 7C03292E
+34A5FFFC 4080FFF8
+3C608030 886351D9
+986B6305 39800008
+714AFFFD B18B40C0
+99490000 4E800020
+60000000 00000000
+C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
+3C60800D 6063432C
+7C6903A6 4E800421
+38000000 00000000
+
+Proto Man Hero
+C2089620 00000001  # Patch (see proto-man-hero.asm)
+3BC00001 00000000
+
+Proto Man Superhero
+C2089620 00000001  # Patch (see proto-man-superhero.asm)
+3BC00002 00000000
+
+Hero TA
+C2089828 00000001  # Patch (see hero-ta.asm)
+38000001 00000000
+
+Superhero TA
+C2089828 00000001  # Patch (see superhero-ta.asm)
+38000002 00000000
+
+Proto Man TA
+C20898B0 00000001  # Patch (see proto-man-ta.asm)
+38800002 00000000
+C2089E40 00000003  # Patch (see fix-whistle-overlap.asm)
+3C60800D 6063432C
+7C6903A6 4E800421
+38000000 00000000
 
 TA weapons (GM 3rd, SW 7th)
-C20B72F4 0000000E  # Patch code to unlock certain weapons based on stage instead
-38000301 889F0002  # of all weapons when Time Attack stage is selected
+C20B72F4 0000000E  # Patch (see ta-weapons.asm)
+38000301 889F0002
 2C040001 4182005C
 3800030B 2C040002
 41820050 38000303
@@ -30,8 +114,25 @@ C20B72F4 0000000E  # Patch code to unlock certain weapons based on stage instead
 41820008 380007FF
 60000000 00000000
 
+TA weapons (GM 4th, SW 7th)
+C20B72F4 0000000E  # Patch (see ta-weapons.asm)
+38000301 889F0002
+2C040001 4182005C
+38000303 2C040002
+41820050 38000307
+2C040003 41820044
+380007DF 2C040004
+41820038 3800030F
+2C040005 4182002C
+3800079F 2C040006
+41820020 3800071F
+2C040007 41820014
+38000201 2C040008
+41820008 380007FF
+60000000 00000000
+
 TA weapons (GM 4th, SW last)
-C20B72F4 0000000E
+C20B72F4 0000000E  # Patch (see ta-weapons.asm)
 38000301 889F0002
 2C040001 4182005C
 38000303 2C040002

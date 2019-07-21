@@ -1,4 +1,11 @@
-# Time Attack weapons (Galaxy 3rd, Splash 7th)
+# Inject at:
+# - WR9E: 0x800b72f4
+# - WR9P: 0x800b7360
+#
+# This patches the weapons unlocked in Time Attack to be the same weapons you
+# would have available in the speedrun.
+
+# Galaxy 3rd, Splash 7th
 .set concrete, 0x0201  # Buster, RC
 .set magma,    0x0301  # Buster, CS, RC
 .set galaxy,   0x0303  # Buster, MB, CS, RC
@@ -8,7 +15,17 @@
 .set splash,   0x079f  # Buster, MB, HC, BHB, JS, PB, CS, RC, RJ
 .set tornado,  0x07df  # Buster, MB, HC, BHB, JS, LT, PB, CS, RC, RJ
 
-# Time Attack weapons (Galaxy 4th, Splash last)
+# Galaxy 4th, Splash 7th
+.set concrete, 0x0201  # Buster, RC
+.set magma,    0x0301  # Buster, CS, RC
+.set hornet,   0x0303  # Buster, MB, CS, RC
+.set galaxy,   0x0307  # Buster, MB, HC, CS, RC
+.set jewel,    0x030f  # Buster, MB, HC, BHB, CS, RC
+.set plug,     0x071f  # Buster, MB, HC, BHB, JS, CS, RC, RJ
+.set splash,   0x079f  # Buster, MB, HC, BHB, JS, PB, CS, RC, RJ
+.set tornado,  0x07df  # Buster, MB, HC, BHB, JS, LT, PB, CS, RC, RJ
+
+# Galaxy 4th, Splash last
 .set concrete, 0x0201  # Buster, RC
 .set magma,    0x0301  # Buster, CS, RC
 .set hornet,   0x0303  # Buster, MB, CS, RC
@@ -18,7 +35,6 @@
 .set tornado,  0x079f  # Buster, MB, HC, BHB, JS, PB, CS, RC, RJ
 .set splash,   0x07bf  # Buster, MB, HC, BHB, JS, TB, PB, CS, RC, RJ
 
-# Time Attack weapons (common code; use one of the sets of data above)
   li r0, magma          # \ if selected stage == Magma Man:
   lbz r4, 0x0002 (r31)  # |   Unlock certain weapons
   cmpwi r4, 0x0001      # |
