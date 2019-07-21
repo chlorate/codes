@@ -1,3 +1,24 @@
+# Rebinding of the game's "virtual" controller. Instead of controller inputs
+# being read directly from the controller, the game normalizes the hardware inputs
+# to a virtual set of inputs:
+#
+# - Up, down, left, right
+# - Shoot (Y/A or B/X depending on control type)
+# - Jump (B/X or Y/A depending on control type)
+# - Start, select, home
+# - L, R (weapon swap and paging in weapons menu)
+#
+# There is a table in memory that maps hardware buttons to virtual buttons which
+# allows the controls to be fully customized. Multiple hardware buttons can be
+# mapped to a virtual button, as is the case normally with Y/A and B/X.
+#
+# The only issue is the weapon swap buttons are also used in the weapons menu to
+# change pages. It makes changing pages awkward when binding weapon swaps to
+# other buttons. To avoid this, the custom bindings are only applied during
+# normal gameplay and the original bindings are restored elsewhere.
+
+.set mode, 0x805336e8
+
 .set bindings, 0x802e7754
 .set downIndex, 0x0006
 .set yIndex, 0x0012
@@ -11,6 +32,36 @@
 .set r, 0x0200
 .set zl, 0x0080
 .set zr, 0x0004
+
+# Unbind Weapon Swap L
+  lis r3, bindings@h              # \ Read Weapon Swap L bindings
+  lhz r0, bindings@l+lIndex (r3)  # /
+  lis r5, mode@h                  # \ if game mode is normal gameplay:
+  lhz r5, mode@l (r5)             # |   Unbind Weapon Swap L from L
+  cmpwi r5, 0x000a                # |
+  bne bind                        # |
+  andi. r0, r0, ~l@l              # |
+  b end                           # /
+bind:                             # \ else:
+  ori r0, r0, l                   # /   Bind Weapon Swap L to L
+end:
+  sth r0, bindings@l+lIndex (r3)  # > Write Weapon Swap L bindings
+  blr
+
+# Unbind Weapon Swap R
+  lis r3, bindings@h              # \ Read Weapon Swap R bindings
+  lhz r0, bindings@l+rIndex (r3)  # /
+  lis r5, mode@h                  # \ if game mode is normal gameplay:
+  lhz r5, mode@l (r5)             # |   Unbind Weapon Swap R from R
+  cmpwi r5, 0x000a                # |
+  bne bind                        # |
+  andi. r0, r0, ~r@l              # |
+  b end                           # /
+bind:                             # \ else:
+  ori r0, r0, r                   # /   Bind Weapon Swap R to R
+end:
+  sth r0, bindings@l+rIndex (r3)  # > Write Weapon Swap R bindings
+  blr
 
 # Bind Weapon Swap L to X
 lis r3, bindings@h
@@ -70,50 +121,4 @@ lhz r0, bindings@l+rIndex (r3)     # \
 andi. r0, r0, ~r@l                 # | Unbind from R
 ori r0, r0, zr                     # | Bind to ZR
 sth r0, bindings@l+rIndex (r3)     # /
-blr
-
-# Bind slide/dash to L
-lis r3, bindings@h
-lhz r0, bindings@l+lIndex (r3)     # \
-andi. r0, r0, ~l@l                 # | Unbind weapon swap from L
-sth r0, bindings@l+lIndex (r3)     # /
-lhz r0, bindings@l+downIndex (r3)  # \
-ori r0, r0, l                      # | Bind down to L
-sth r0, bindings@l+downIndex (r3)  # /
-lhz r0, bindings@l+bIndex (r3)     # \
-ori r0, r0, l                      # | Bind B to L
-sth r0, bindings@l+bIndex (r3)     # /
-blr
-
-# Bind slide/dash to R
-lis r3, bindings@h
-lhz r0, bindings@l+rIndex (r3)     # \
-andi. r0, r0, ~r@l                 # | Unbind weapon swap from R
-sth r0, bindings@l+rIndex (r3)     # /
-lhz r0, bindings@l+downIndex (r3)  # \
-ori r0, r0, r                      # | Bind down to R
-sth r0, bindings@l+downIndex (r3)  # /
-lhz r0, bindings@l+bIndex (r3)     # \
-ori r0, r0, r                      # | Bind B to R
-sth r0, bindings@l+bIndex (r3)     # /
-blr
-
-# Bind slide/dash to ZL
-lis r3, bindings@h
-lhz r0, bindings@l+downIndex (r3)  # \
-ori r0, r0, zl                     # | Bind down to ZL
-sth r0, bindings@l+downIndex (r3)  # /
-lhz r0, bindings@l+bIndex (r3)     # \
-ori r0, r0, zl                     # | Bind B to ZL
-sth r0, bindings@l+bIndex (r3)     # /
-blr
-
-# Bind slide/dash to ZR
-lis r3, bindings@h
-lhz r0, bindings@l+downIndex (r3)  # \
-ori r0, r0, zr                     # | Bind down to ZR
-sth r0, bindings@l+downIndex (r3)  # /
-lhz r0, bindings@l+bIndex (r3)     # \
-ori r0, r0, zr                     # | Bind B to ZR
-sth r0, bindings@l+bIndex (r3)     # /
 blr
