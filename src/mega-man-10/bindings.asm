@@ -36,14 +36,16 @@
 # Unbind Weapon Swap L
   lis r5, bindings@h              # \ Read Weapon Swap L bindings
   lhz r0, bindings@l+lIndex (r5)  # /
-  lis r7, mode@h                  # \ if game mode is normal gameplay:
-  lhz r7, mode@l (r7)             # |   Unbind Weapon Swap L from L
+  lis r7, mode@h                  # \ if game mode is not normal gameplay nor fade-in from menu:
+  lhz r7, mode@l (r7)             # |
   cmpwi r7, 0x000a                # |
-  bne bind                        # |
-  andi. r0, r0, ~l@l              # |
+  beq unbind                      # |
+  cmpwi r7, 0x000c                # |
+  beq unbind                      # |
+  ori r0, r0, l                   # | > Bind Weapon Swap L to L
   b end                           # /
-bind:                             # \ else:
-  ori r0, r0, l                   # /   Bind Weapon Swap L to L
+unbind:                           # \ else:
+  andi. r0, r0, ~l@l              # /   Unbind Weapon Swap L from L
 end:
   sth r0, bindings@l+lIndex (r5)  # > Write Weapon Swap L bindings
   blr
@@ -51,14 +53,16 @@ end:
 # Unbind Weapon Swap R
   lis r5, bindings@h              # \ Read Weapon Swap R bindings
   lhz r0, bindings@l+rIndex (r5)  # /
-  lis r7, mode@h                  # \ if game mode is normal gameplay:
-  lhz r7, mode@l (r7)             # |   Unbind Weapon Swap R from R
+  lis r7, mode@h                  # \ if game mode is not normal gameplay nor fade-in from menu:
+  lhz r7, mode@l (r7)             # |
   cmpwi r7, 0x000a                # |
-  bne bind                        # |
-  andi. r0, r0, ~r@l              # |
+  beq unbind                      # |
+  cmpwi r7, 0x000c                # |
+  beq unbind                      # |
+  ori r0, r0, r                   # | > Bind Weapon Swap R to R
   b end                           # /
-bind:                             # \ else:
-  ori r0, r0, r                   # /   Bind Weapon Swap R to R
+unbind:                           # \ else:
+  andi. r0, r0, ~r@l              # /   Unbind Weapon Swap R from R
 end:
   sth r0, bindings@l+rIndex (r5)  # > Write Weapon Swap R bindings
   blr
