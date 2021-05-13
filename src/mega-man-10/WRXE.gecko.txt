@@ -85,6 +85,14 @@ Sliding Mega Man
 00071DC7 0000007F  # Patch character bit mask in function checking if slide pressed
 00071E8A 0000007F  # Patch character bit mask in function preventing jump out of slide
 
+Easy TA
+C2049890 00000001  # Patch (see easy-ta.asm)
+38C00000 00000000
+
+Hard TA
+C2049890 00000001  # Patch (see hard-ta.asm)
+38C00003 00000000
+
 Time Attack weapons
 02535A7E 000007FF  # weapons = MB, TB, WS, CB, CS, TW, WC, SB, RC, RJ
 285102EE 00000002  # if music == Pump Man:
