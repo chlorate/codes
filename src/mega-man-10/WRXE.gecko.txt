@@ -36,6 +36,10 @@ B18B36E8 B1AB36EA
 C2049D4C 00000002  # Patch (see retry-stage-reset-refights.asm)
 3C808051 98040661
 38800900 00000000
+C2042114 00000003  # Patch (see fix-whistle-overlap.asm)
+3C608001 6063F3CC
+7C6903A6 4E800421
+3C608051 00000000
 
 Retry checkpoint (Select + A)
 C0000000 00000026  # Execute assembly (see retry-checkpoint.asm)
@@ -80,6 +84,10 @@ B18B36E8 B1AB36EA
 C2049D4C 00000002  # Patch (see retry-stage-reset-refights.asm)
 3C808051 98040661
 38800900 00000000
+C2042114 00000003  # Patch (see fix-whistle-overlap.asm)
+3C608001 6063F3CC
+7C6903A6 4E800421
+3C608051 00000000
 
 Sliding Mega Man
 00071DC7 0000007F  # Patch character bit mask in function checking if slide pressed
