@@ -6,6 +6,7 @@
 # WRXE addresses:
 .set input,               0x804534ea
 .set gameMode,            0x805336e8
+.set gameType,            0x805359e7
 .set weaponMenuMode,      0x80fb9039
 .set currentRefightKills, 0x80510661
 .set initialRefightKills, 0x80535b0d
@@ -52,6 +53,10 @@ pressed:
 activation:
   andi. r0, r10, activatedBit              # \ if not activated:
   beq end                                  # /   Do nothing
+  lis r3, gameType@h                       # \ Read game type
+  lbz r3, gameType@l (r3)                  # /
+  cmplwi r3, 0x0005                        # \ if playing TA replay:
+  beq deactivate                           # /   Deactivate
   lis r11, gameMode@h                      # \ Read game mode
   lhz r12, gameMode@l (r11)                # |
   lhz r13, gameMode@l+0x0002 (r11)         # /
