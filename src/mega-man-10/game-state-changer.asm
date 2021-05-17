@@ -74,7 +74,7 @@
   lhz r12, gameState@l (r11)           # |
   lhz r5, gameState@l+0x0002 (r11)     # /
   cmplwi r12, 0x0009                   # \ Deactivate if first stage fade in frame to cancel codes
-  beq deactivate                       # / activated during main menu 
+  beq deactivate                       # / activated during main menu
   cmplwi r12, 0x000a                   # > Check if normal gameplay
   beq openWeaponMenu
   cmplwi r12, 0x000b                   # \ Force weapon menu to open if fading from gameplay to
@@ -145,9 +145,9 @@ closePauseMenu:
   b writeGameStateWord
 
 openWeaponMenu:
-  li r12, 0x000b                       # \ Open weapon menu (oris) or           
-  andi. r5, r5, 0x00ff                 # | switch to weapon menu (andi.) if any 
-  b writeGameStateWord                 # / menu is currently opening            
+  li r12, 0x000b                       # \ Open weapon menu (oris) or switch to weapon menu (andi.)
+  andi. r5, r5, 0x00ff                 # | if any menu is currently opening
+  b writeGameStateWord                 # /
 
 closeWeaponMenu:
   lis r3, menuState@h
