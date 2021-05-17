@@ -9,9 +9,12 @@
 .set newGameState, 0x001a
 
 .if version == 'E'
-  .set input,    0x804534ea
-  .set gameMode, 0x805359e7
+  .set input,        0x804534ea
+  .set gameMode,     0x805359e7
+  .set unsetPointer, 0x8067ca38 + 0x10000
 .endif
+
+.set unsetValue, gameMode - 0x223b
 
   lis r3, gameMode@h             # \ Read game mode
   lbz r3, gameMode@l (r3)        # /
@@ -31,6 +34,10 @@
 pressed:
   andi. r0, r10, pressedBit      # > Check if already pressed
   bgt end
+  lis r3, unsetPointer@h         # \ Fix unset pointer causing crash if soft
+  lis r5, unsetValue@h           # | resetting before playing any stage
+  ori r5, r5, unsetValue@l       # |
+  stw r5, unsetPointer@l (r3)    # /
   lis r5, changerBits            # \ Write payload for game state changer code
   ori r5, r5, newGameState       # |
   lis r3, changerState@h         # |
